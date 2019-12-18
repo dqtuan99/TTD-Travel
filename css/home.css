@@ -1,0 +1,261 @@
+
+/* post-content */
+h3 {
+  margin-top:12px;
+  font-family: MdGroteskRegular;
+  font-size: 130%;
+}
+
+.postcontent {
+  overflow: hidden;
+  display: block;
+  height: 240px;
+  position: relative;
+}
+
+.image-container {
+  width: 38%;
+  height: 240px;
+  padding: 0;
+  float: left;
+  /* border: solid red 1px; */
+  margin-right: 15px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.content-container {
+  width: 60%;
+  height: 260px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding-top: 10px;
+  /* border: solid blue 1px; */
+}
+
+.content-container p {
+  text-align: justify;
+  margin-right: 15px;
+}
+
+.button-group2 {
+  width: 102.2%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.button-nav2 {
+  padding: 0;
+  margin: 0;
+  margin-left: 10px;
+  margin-right: 3px;
+}
+
+.nav-element2 {
+  float: left;
+  padding: 0px 0px;
+  width: 33%;
+  list-style: none;
+  text-align: center;
+}
+
+.nav-element2 button {
+  width: 97%;
+}
+/* image post effect */
+.hovereffect {
+  width: 100%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  background: #f5e6e6;
+}
+
+
+.hovereffect img {
+  display: block;
+  position: relative;
+  max-width: none;
+  width: calc(100% + 20px);
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  -webkit-transform: translate3d(-10px,0,0);
+  transform: translate3d(-10px,0,0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.hovereffect:hover img {
+  opacity: 0.4;
+  filter: alpha(opacity=40);
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+
+/* postcontent */
+li.postcontent p{
+  font-family: GeosansLight;
+  font-size: 130%;
+}
+
+li.postcontent{
+  margin: 10px;
+  margin-right: 47px;
+}
+
+
+.post-title {
+  font-family:GeosansLight;
+  font-size:150%;
+  font-weight: bold;
+  display: inline-block;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color .3s;
+}
+
+.post-title:hover {
+  color: #1885b8;
+}
+
+.post-container2 {
+  width:85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.postbtn {
+  font-family: MdGroteskRegular;
+  background-color: #ffffff;
+  color: black;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding:6px;
+  border: 1px solid #b89a98 !important;
+  margin-top: 12px;
+}
+
+.postbtn:hover{
+  background-color: #d9d9d9;
+  color:#ffffff;
+}
+
+.error-message {
+  color: #f54242;
+  float: right;
+}
+.line{
+  width:80%;
+  margin-left:100px;
+  margin-right: auto;
+}
+
+/* CONTACT */
+.contact {
+  margin-top: 80px;
+  margin-bottom:40px;
+}
+.col-sm-5{
+  padding:0;
+  margin:0;
+}
+.col-sm-5 img{
+  width:100%;
+  float:right;
+}
+.contact-text{
+  margin-left: auto;
+  margin-right:auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  font-size:150%;
+}
+.contact-text .contact-title{
+  font-size:60px;
+  font-family:geosanslight;
+  font-weight:bold;
+}
+.contact-text .contact-info{
+  font-family:geosanslight;
+}
+.contact-btn:hover{
+  cursor:pointer;
+}
+/* DESTINATION */
+.card-img-top{
+  height:240px;
+}
+.card-text{
+  height:120px;
+  font-family:GeosansLight;
+  font-size:120%;
+}
+.title-post{
+  cursor:pointer;
+  color: #000;
+  font-weight: bold;
+  font-size: 115%;
+  transition: color .3s;
+}
+
+.title-post:hover {
+  color: #1885b8;
+}
+.card-title{
+    font-family:GeosansLight;
+    font-size: 130%;
+    font-weight:bold;
+  }
+}
+.title-post:hover{
+  color: #1885b8;
+}
+
+.card-body {
+  min-height: 300px;
+}
+
+.destination-container {
+  width: 90%;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h2{
+  /* margin-top:-40px; */
+  color:#484a47;
+  font-weight: lighter;
+	font-family: 'centabel' !important;
+  font-size:300%;
+}
+
+.hovereffect2:hover img {
+  filter: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="filter"><feComponentTransfer color-interpolation-filters="sRGB"><feFuncR type="linear" slope="0.6" /><feFuncG type="linear" slope="0.6" /><feFuncB type="linear" slope="0.6" /></feComponentTransfer></filter></svg>#filter');
+  filter: brightness(0.6);
+  -webkit-filter: brightness(0.6);
+  cursor: pointer;
+}
+
+.read-more {
+  color: #1885b8;
+}
+
+.modal-post .datetime-location {
+  padding-top: 500px;
+  font-size: 18px;
+}
+
+.modal-post .image-container img{
+  height: 500px;
+}

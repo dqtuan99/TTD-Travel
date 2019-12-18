@@ -1,0 +1,11 @@
+@font-face {
+	font-family: 'SansationRegular';
+	src: url('./SansationRegular.eot');
+	src: local('SansationRegular'), url('./SansationRegular.woff') format('woff'), url('./SansationRegular.ttf') format('truetype');
+}
+/* use this class to attach this font to any element i.e. <p class="fontsforweb_fontid_424">Text with this font applied</p> */
+.fontsforweb_fontid_424 {
+	font-family: 'SansationRegular' !important;
+}
+
+/* Font downloaded from FontsForWeb.com */

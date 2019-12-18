@@ -1,0 +1,5 @@
+@font-face {
+	font-family: 'MDGroteskRegular';
+	src: url('./MDGroteskRegular.eot');
+	src: local('MDGroteskRegular'), url('./MDGroteskRegular.woff') format('woff'), url('./MDGroteskRegular.ttf') format('truetype');
+}

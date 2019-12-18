@@ -1,0 +1,11 @@
+@font-face {
+	font-family: 'GeosansLight';
+	src: url('./GeosansLight.eot');
+	src: local('GeosansLight'), url('./GeosansLight.woff') format('woff'), url('./GeosansLight.ttf') format('truetype');
+}
+/* use this class to attach this font to any element i.e. <p class="fontsforweb_fontid_79599">Text with this font applied</p> */
+.fontsforweb_fontid_79599 {
+	font-family: 'GeosansLight' !important;
+}
+
+/* Font downloaded from FontsForWeb.com */

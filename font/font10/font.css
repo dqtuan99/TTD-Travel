@@ -1,0 +1,11 @@
+@font-face {
+	font-family: 'centabel';
+	src: url('./centabel.eot');
+	src: local('centabel'), url('./centabel.woff') format('woff'), url('./centabel.ttf') format('truetype');
+}
+/* use this class to attach this font to any element i.e. <p class="fontsforweb_fontid_408">Text with this font applied</p> */
+.fontsforweb_fontid_408 {
+	font-family: 'centabel' !important;
+}
+
+/* Font downloaded from FontsForWeb.com */

@@ -1,0 +1,11 @@
+@font-face {
+	font-family: 'Chapbook';
+	src: url('./Chapbook.eot');
+	src: local('Chapbook'), url('./Chapbook.woff') format('woff'), url('./Chapbook.ttf') format('truetype');
+}
+/* use this class to attach this font to any element i.e. <p class="fontsforweb_fontid_80467">Text with this font applied</p> */
+.fontsforweb_fontid_80467 {
+	font-family: 'Chapbook' !important;
+}
+
+/* Font downloaded from FontsForWeb.com */

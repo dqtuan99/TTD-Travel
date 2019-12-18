@@ -1,0 +1,11 @@
+@font-face {
+	font-family: 'apexnewlightwebfont';
+	src: url('./apexnewlightwebfont.eot');
+	src: local('apexnewlightwebfont'), url('./apexnewlightwebfont.woff') format('woff'), url('./apexnewlightwebfont.ttf') format('truetype');
+}
+/* use this class to attach this font to any element i.e. <p class="fontsforweb_fontid_32394">Text with this font applied</p> */
+.fontsforweb_fontid_32394 {
+	font-family: 'apexnewlightwebfont' !important;
+}
+
+/* Font downloaded from FontsForWeb.com */

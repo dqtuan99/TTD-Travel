@@ -1,0 +1,270 @@
+* {
+  box-sizing: border-box;
+}
+
+/* some cool effect */
+.carousel {
+  height: 500px;
+}
+
+.grow { transition: all .3s ease-in-out; }
+.grow:hover { transform: scale(1.075); }
+
+.grow-lg { transition: all .3s ease-in-out; }
+.grow-lg:hover { transform: scale(1.125); }
+
+.grow-xlg { transition: all .15s ease-in-out; }
+.grow-xlg:hover { transform: scale(1.5); }
+
+.hvr-animation-blue {
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.hvr-animation-blue::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #1885b8;
+  transition: width .3s;
+}
+
+.hvr-animation-black:hover::after {
+  width: 100%;
+  transition: width .3s;
+}
+
+.hvr-animation-black {
+  display: inline-block;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.hvr-animation-black::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #000;
+  transition: width .3s;
+}
+
+.hvr-animation-blue:hover::after {
+  width: 100%;
+  transition: width .3s;
+}
+
+.horizontal-line {
+  border-top: solid 1px #878787;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.container2 {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+}
+
+.title{
+  margin-left:400px;
+  margin-right:400px;
+  margin-bottom:40px;
+}
+
+h1 {
+  margin-top: 0px;
+  font-size: 80px;
+  text-align: center;
+  color:#484a47;
+  font-weight: lighter;
+	font-family: 'centabel' !important;
+}
+
+.p-title {
+    font-size:19px;
+    font-family: 'MTCORSVA' !important;
+    font-style: italic;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.p-title:before {
+    border-top: 2px solid gray;
+    content:"";
+    margin: 0 auto;
+    position: absolute;
+    top: 15px; left: 0; right: 0; bottom: 0;
+    width: 95%;
+    z-index: -1;
+}
+
+.p-title span {
+  background: #fff;
+  padding: 0 10px;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+input[type="checkbox"] {
+  vertical-align: middle;
+}
+
+/* menubar */
+.navbar{
+  background-color:  #edcacb !important;
+}
+
+.navbar .navbar-nav .nav-item .nav-link:hover{
+  color:#e31254;
+}
+.navbar .navbar-nav .nav-item .nav-link{
+  color:black;
+  font-size:120%;
+  font-family:"centabel";
+}
+
+.span-btn::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #e31254;
+  transition: width .2s;
+}
+
+.search-bar{
+  margin-right:30px;
+}
+.span-btn:hover::after {
+  width: 100%;
+  transition: width .4s;
+}
+.navbar .navbar-nav .nav-btn2{
+  float:right;
+}
+.dropdown:hover>.dropdown-menu {
+  display: block;
+  background-color:#fff0f1;
+  font-size:120%;
+  font-weight: bold;
+  font-family:Kalinga;
+}
+
+.dropdown>.dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+    pointer-events: none;
+}
+.dropdown-item:hover{
+  background-color:#cfcfcf;
+  color:#ffffff;
+}
+
+.dropdown-menu {
+  overflow: hidden;
+}
+
+/* scroll bar */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+#myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: #f7c8c8; /* Set a background color */
+  color: black; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+}
+
+#myBtn:hover {
+  background-color: #737373; /* Add a dark-grey background on hover */
+  color:white;
+}
+
+/* recent post */
+/* post-header */
+.post-header{
+  margin-right:auto;
+  margin-left: auto;
+  width: 92%;
+  margin-top: 80px;
+}
+
+.zaptitle {
+  margin-bottom:20px !important;
+}
+
+.home_widget .page_title_s2, .home_widget .page_title_s3, .home_widget .page_title_s4,
+.page_title_testimonials, .zaptitle {
+  border-bottom-color: #bababa;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  color: #545454;
+  float: left;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 0 20px;
+  min-height: 30px;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  margin-left: 0;
+}
+.page_info_title_s2 {
+  position: relative;
+  float: left;
+  padding-bottom: 10px;
+  line-height: 20px;
+  top: 1px;
+  vertical-align: baseline;
+  border-bottom-width: 1.5px;
+  border-bottom-style: solid;
+  border-bottom-color: #0ca8a8;
+}
+
+.location {
+  color: #1885b8;
+}
+
+.username {
+  color: #1885b8;
+}
