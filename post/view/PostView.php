@@ -102,7 +102,6 @@ class PostView {
       $img_count = count($img_arr);
       $like_count = $row["like_count"]/$img_count;
       $love_count = $row["love_count"]/$img_count;
-
     }
     echo '
     <div id="detailPostModal'.$row["post_id"].'" class="modal fade">
