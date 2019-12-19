@@ -37,6 +37,12 @@ class PostCtrl {
   public function showRecentPostModal() {
     $post = new \post\model\Post();
     $data = $post->getRecentPostModal();
+    $count = $post->getPostCount();
+    for ($i = 0; $i < count($data); ++$i){
+      $data[$i]["like_count"] = $count[$i]["like_count"];
+      $data[$i]["love_count"] = $count[$i]["love_count"];
+    }
+
     $postview = new \post\view\PostView($data);
 
     echo $postview->recentPostModalView();

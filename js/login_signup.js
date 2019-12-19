@@ -78,17 +78,12 @@ function checkSignup() {
 }
 
 function checkLogin() {
-  let no_error_yet = true
+  let no_error_yet = false
   let username = document.getElementById('username2')
   let password = document.getElementById('password2')
 
   let login_error = document.getElementById('login_error')
   login_error.innerHTML = ''
-
-  if (username.value != 'tuank62ie1' || password.value != 'quangtuan99'){
-    login_error.innerHTML = 'Username or password incorrect, please try again.'
-    no_error_yet = false
-  }
 
   if (no_error_yet){
     document.getElementById('login-form').submit()

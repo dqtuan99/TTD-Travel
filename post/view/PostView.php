@@ -19,12 +19,12 @@ class PostView {
         <div class="image-container">
           <div class="hovereffect">
             <img class="rounded img-responsive" src="'.$row["thumbnail_img"].'"
-            href="detailPostModal'.$row["post_id"].'" data-toggle="modal">
+            href="#detailPostModal'.$row["post_id"].'" data-toggle="modal">
           </div>
 
         </div>
         <div class="content-container">
-          <h3 class="post-title hvr-animation-blue" href="detailPostModal'.$row["post_id"].'" data-toggle="modal">'.$row["title"].'</h3>
+          <h3 class="post-title hvr-animation-blue" href="#detailPostModal'.$row["post_id"].'" data-toggle="modal">'.$row["title"].'</h3>
           <div class="datetime-location" style="font-size: 14px;">
             <footer class="blockquote-footer">
               <span>'.$row["publish_date"].'</span>
@@ -34,7 +34,7 @@ class PostView {
           <div class="datetime-location" style="font-size: 14px;">
             <footer class="blockquote-footer">
               <span>Published by </span>
-              <span class="username hvr-animation-blue">@tuank62ie1</span>
+              <span class="username hvr-animation-blue">@qtuan99</span>
             </footer>
           </div>
           <p>
@@ -50,7 +50,7 @@ class PostView {
                 <button type="button" class="btn postbtn"><i class="far fa-heart"></i> Love </button>
               </li>
               <li class="nav-element2">
-                <button type="button" class="btn postbtn" href="detailPostModal'.$row["post_id"].'" data-toggle="modal">
+                <button type="button" class="btn postbtn" href="#detailPostModal'.$row["post_id"].'" data-toggle="modal">
                 <i class="far fa-comment"></i> Comment </button>
               </li>
             </ul>
@@ -97,154 +97,159 @@ class PostView {
   }
 
   public function recentPostModalView() {
+    $html = "";
     foreach ($this->data as $row){
       $img_arr = explode(",", $row["img_list"]);
       $img_count = count($img_arr);
-      $like_count = $row["like_count"]/$img_count;
-      $love_count = $row["love_count"]/$img_count;
-    }
-    echo '
-    <div id="detailPostModal'.$row["post_id"].'" class="modal fade">
-      <div class="modal-dialog modal-lg modal-post">
-        <div class="modal-content">
-          <div class="modal-body">
-            <div class="post-container">
-              <div class="user-container row">
-                <div class="col-sm-1">
-                  <img class="avatar" src="images/avatar.jpg" alt="">
-                </div>
-                <div class="col-sm" style="margin: 0; padding: 0; margin-left: 5px;">
-                  <div class="row fullname"><h5 class="font-weight-bold hvr-animation-black">'.$row["fullname"].'</h5></div>
-                  <div class="row username" style="margin-top: 1px;"><h6>'.$row["username"].'</h6></div>
-                </div>
-              </div>
-              <div class="text-container">
-                <h2 class="post-title font-weight-bold">'.$row["title"].'</h2>
-                <p class="post-text">
-                  '.$row["text"].'
-                </p>
-              </div>
-              <div class="image-container">
-                <div id="modal-slide'.$row["post_id"].'" class="carousel slide" data-ride="carousel">
-                  <!-- Indicators -->
-                  TODO
-                  <ul class="carousel-indicators">
-                    <li data-target="#modal-slide" data-slide-to="0" class="active"></li>
-                    <li data-target="#modal-slide" data-slide-to="1"></li>
-                    <li data-target="#modal-slide" data-slide-to="2"></li>
-                  </ul>
 
-                  <!-- The slideshow -->
-                  <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img src="">
-                    </div>
-                    <div class="carousel-item">
-                      <img src="">
-                    </div>
-                    <div class="carousel-item">
-                      <img src="">
-                    </div>
+      $html .= '
+      <div id="detailPostModal'.$row["post_id"].'" class="modal fade">
+        <div class="modal-dialog modal-lg modal-post">
+          <div class="modal-content">
+            <div class="modal-body">
+              <div class="post-container">
+                <div class="user-container row">
+                  <div class="col-sm-1">
+                    <img class="avatar" src="images/avatar.jpg" alt="">
                   </div>
+                  <div class="col-sm" style="margin: 0; padding: 0; margin-left: 5px;">
+                    <div class="row fullname"><h5 class="font-weight-bold hvr-animation-black">'.$row["fullname"].'</h5></div>
+                    <div class="row username" style="margin-top: 1px;"><h6>@'.$row["username"].'</h6></div>
+                  </div>
+                </div>
+                <div class="text-container">
+                  <h2 class="post-title font-weight-bold">'.$row["title"].'</h2>
+                  <p class="post-text">
+                    '.$row["text"].'
+                  </p>
+                </div>
+                <div class="image-container">
+                  <div id="modal-slide'.$row["post_id"].'" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ul class="carousel-indicators">';
+                    $html .= '
+                      <li data-target="#modal-slide" data-slide-to="0" class="active"></li>
+                      <li data-target="#modal-slide" data-slide-to="1"></li>
+                      <li data-target="#modal-slide" data-slide-to="2"></li>';
+                    $html .= '
+                    </ul>
 
-                  <!-- Left and right controls -->
-                  <a class="carousel-control-prev" href="#modal-slide" data-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                  </a>
-                  <a class="carousel-control-next" href="#modal-slide" data-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                  </a>
+                    <!-- The slideshow -->
+                    <div class="carousel-inner">';
+                    $html .= '
+                      <div class="carousel-item active">
+                        <img src="">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="">
+                      </div>
+                      <div class="carousel-item">
+                        <img src="">
+                      </div>';
+                    $html .= '
+                    </div>
+
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#modal-slide" data-slide="prev">
+                      <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next" href="#modal-slide" data-slide="next">
+                      <span class="carousel-control-next-icon"></span>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <div class="datetime-location">
-                <footer class="blockquote-footer">
-                  <span>'.$row["publish_date"].'</span><span class="location hvr-animation-blue">'.$row["city"].'</span>
-                </footer>
-              </div>
-              <hr class="horizontal-line">
-              <div class="row counter-container">
-                <div class="col-sm-2">
-                  <span class="post_like_counter" style="font-weight: bold;">'.$like_count.'</span><span>Likes</span>
-                </div>
-                <div class="col-sm-2">
-                  <span class="post_love_counter" style="font-weight: bold;">'.$love_count.'</span><span>Loves</span>
-                </div>
-                <div class="col-sm-2">
-                  <span class="post_comment_counter" style="font-weight: bold;">TODO cmt count</span><span>Comments</span>
-                </div>
-              </div>
-              <hr class="horizontal-line">
-              <div class="row button-container">
-                <div class="col-sm text-center">
-                  <button type="button" class="like-btn circle-btn text-center post_like_btn">
-                    <i class="far fa-thumbs-up"></i>
-                  </button>
-                </div>
-                <div class="col-sm text-center">
-                  <button type="button" class="love-btn circle-btn text-center post_love_btn">
-                    <i class="far fa-heart"></i>
-                  </button>
-                </div>
-                <div class="col-sm text-center">
-                  <button type="button" class="cmt-btn circle-btn text-center post_comment_btn">
-                    <i class="far fa-comment"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="comment-container">
-            TODO
-            <div class="comment row">
-              <div class="col-sm-1" style="margin-right: 10px;">
-                <img class="avatar" src="images/avatar.jpg" alt="">
-              </div>
-              <div class="col-sm" style="margin: 0; padding: 0;">
-                <div class="row">
-                  <h5 class="font-weight-bold fullname hvr-animation-black">Do Quang Tuan</h5>
-                  <span class="username" style="padding-left: 10px;">@tuank62ie1</span>
-                </div>
-                <div class="row">
+                <div class="datetime-location">
                   <footer class="blockquote-footer">
-                    <span>7:00 PM · Oct 19, 2019</span>
+                    <span>'.$row["publish_date"].'</span><span class="location hvr-animation-blue">'.$row["city"].'</span>
                   </footer>
                 </div>
-                <div class="row">Bạn cho mình thêm thông tin các địa điểm du lịch tại miền Bắc Việt Nam được không?</div>
-                <div class="row" style="margin-left: -23px; margin-top: 3px;">
-                  <div class="col-sm">
-                    <button type="button" class="like-btn circle-btn text-center comment_like_btn">
+                <hr class="horizontal-line">
+                <div class="row counter-container">
+                  <div class="col-sm-2">
+                    <span class="post_like_counter" style="font-weight: bold;">'.$row["like_count"].'</span><span> Likes</span>
+                  </div>
+                  <div class="col-sm-2">
+                    <span class="post_love_counter" style="font-weight: bold;">'.$row["love_count"].'</span><span> Loves</span>
+                  </div>
+                  <div class="col-sm-2">
+                    <span class="post_comment_counter" style="font-weight: bold;"></span><span>Comments</span>
+                  </div>
+                </div>
+                <hr class="horizontal-line">
+                <div class="row button-container">
+                  <div class="col-sm text-center">
+                    <button type="button" class="like-btn circle-btn text-center post_like_btn">
                       <i class="far fa-thumbs-up"></i>
                     </button>
-                    <span class="comment_like_counter" style="font-weight: bold;">3 </span>
                   </div>
-                  <div class="col-sm">
-                    <button type="button" class="dislike-btn circle-btn text-center comment_dislike_btn">
-                      <i class="far fa-thumbs-down"></i>
-                    </button>
-                    <span class="comment_dislike_counter" style="font-weight: bold;">3 </span>
-                  </div>
-                  <div class="col-sm">
-                    <button type="button" class="love-btn circle-btn text-center comment_love_btn">
+                  <div class="col-sm text-center">
+                    <button type="button" class="love-btn circle-btn text-center post_love_btn">
                       <i class="far fa-heart"></i>
                     </button>
-                    <span class="comment_love_counter" style="font-weight: bold;">3 </span>
                   </div>
-                  <div class="col-sm">
-                    <button type="button" class="cmt-btn circle-btn text-center comment_reply_btn">
+                  <div class="col-sm text-center">
+                    <button type="button" class="cmt-btn circle-btn text-center post_comment_btn">
                       <i class="far fa-comment"></i>
                     </button>
                   </div>
                 </div>
               </div>
             </div>
-            <hr class="horizontal-line">
+            <div class="comment-container">
+              TODO
+              <div class="comment row">
+                <div class="col-sm-1" style="margin-right: 10px;">
+                  <img class="avatar" src="images/avatar.jpg" alt="">
+                </div>
+                <div class="col-sm" style="margin: 0; padding: 0;">
+                  <div class="row">
+                    <h5 class="font-weight-bold fullname hvr-animation-black">Do Quang Tuan</h5>
+                    <span class="username" style="padding-left: 10px;">@qtuan99</span>
+                  </div>
+                  <div class="row">
+                    <footer class="blockquote-footer">
+                      <span>7:00 PM · Oct 19, 2019</span>
+                    </footer>
+                  </div>
+                  <div class="row">Bạn cho mình thêm thông tin các địa điểm du lịch tại miền Bắc Việt Nam được không?</div>
+                  <div class="row" style="margin-left: -23px; margin-top: 3px;">
+                    <div class="col-sm">
+                      <button type="button" class="like-btn circle-btn text-center comment_like_btn">
+                        <i class="far fa-thumbs-up"></i>
+                      </button>
+                      <span class="comment_like_counter" style="font-weight: bold;">3 </span>
+                    </div>
+                    <div class="col-sm">
+                      <button type="button" class="dislike-btn circle-btn text-center comment_dislike_btn">
+                        <i class="far fa-thumbs-down"></i>
+                      </button>
+                      <span class="comment_dislike_counter" style="font-weight: bold;">3 </span>
+                    </div>
+                    <div class="col-sm">
+                      <button type="button" class="love-btn circle-btn text-center comment_love_btn">
+                        <i class="far fa-heart"></i>
+                      </button>
+                      <span class="comment_love_counter" style="font-weight: bold;">3 </span>
+                    </div>
+                    <div class="col-sm">
+                      <button type="button" class="cmt-btn circle-btn text-center comment_reply_btn">
+                        <i class="far fa-comment"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <hr class="horizontal-line">
 
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    ';
+      ';
+    }
+    echo $html;
+
   }
 
 }

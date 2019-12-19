@@ -58,7 +58,7 @@ class Post {
     $db = new PDOData();
     $data = $db->doQuery("
       select 	p.*,
-              group_concat(m.img_path) as img_list, 
+              group_concat(m.img_path) as img_list,
               group_concat(m.video_path) as video_list,
               u.username, u.fullname, u.avatarPath,
               l.city,
@@ -72,7 +72,28 @@ class Post {
       inner join location l
       on l.post_id = p.post_id
       inner join react r
-      on r.post_id = p.post_id;
+      on r.post_id = p.post_id
+      group by p.post_id
+      order by p.publish_date desc limit 3;
     ");
+
+    return $data;
   }
+
+  public function getPostCount() {
+    $db = new PDOData();
+    $data = $db->doQuery("
+      select 	p.post_id, p.publish_date,
+              sum(if(r.react_type = 1, 1, 0)) as like_count,
+              sum(if(r.react_type = 2, 1, 0)) as love_count
+      from post p
+      inner join react r
+      on p.post_id = r.post_id
+      group by p.post_id
+      order by p.publish_date desc limit 3;
+    ");
+
+    return $data;
+  }
+
 }
