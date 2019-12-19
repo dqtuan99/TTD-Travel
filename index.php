@@ -34,7 +34,10 @@
 
 <?php
   require_once("post/control/PostCtrl.php");
-  $postctrl = new \post\control\PostCtrl();
+  require_once("account/control/AccountCtrl.php");
+  $postCtrl = new \post\control\PostCtrl();
+  $accountCtrl = new \account\control\AccountCtrl();
+  $accountCtrl->checkAuthentication();
 ?>
 
 <body>
@@ -79,10 +82,10 @@
           </div>
         </form>
         <li class="nav-item">
-          <a class="nav-link" href="" data-toggle="modal"><span class="span-btn">Login</span></a>
+          <?php $accountCtrl->showLoginBtn("first") ?>
         </li>
         <li class="nav-item ">
-          <a class="nav-link" href="" data-toggle="modal"><span class="span-btn">Sign up</span></a>
+          <?php $accountCtrl->showLoginBtn("second") ?>
         </li>
       </div>
     </div>
@@ -94,7 +97,6 @@
   <!-- scrollbar -->
 
   <div class="container2">
-
     <div class="text-center" >
       <h1>TTDTRAVEL</h1>
       <div class="title"><p class="p-title"><span>All the lastest</span></div>
@@ -123,7 +125,7 @@
       <div>
         <div class="row">
           <?php
-            $postctrl->showRecentDestination();
+            $postCtrl->showRecentDestination();
           ?>
         </div>
       </div>
@@ -141,7 +143,7 @@
       <div class="post-list">
         <ul>
           <?php
-            $postctrl->showRecentPost();
+            $postCtrl->showRecentPost();
           ?>
         </ul>
       </div>
@@ -179,7 +181,72 @@
 
   </div>
 
+  <!-- All modal here -->
+  <!-- signup modal -->
+  <div id="signupModal" class="modal fade">
+    <div class="modal-dialog modal-login">
+      <div class="modal-content">
+        <form id="signup-form" method="post" action="">
+          <div class="modal-header">
+            <h4 class="modal-title">Sign up</h4>
 
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label>Username</label>
+              <span class="error-message" id="username_error"></span>
+              <input type="text" class="form-control" required="required" id="username"
+              title="Username should contain only letters and numbers from 8 to 32 characters.">
+            </div>
+            <div class="form-group">
+              <label>Full name</label>
+              <span class="error-message" id="fullname_error"></span>
+              <input type="text" class="form-control" required="required" id="fullname"
+              title="Please enter a valid name. For example: Elon Musk.">
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <span class="error-message" id="email_error"></span>
+              <input type="text" class="form-control" required="required" id="email"
+              title="Please enter a valid email address. For example: email_address@gmail.com.">
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <span class="error-message" id="password_error"></span>
+              <input type="password" class="form-control" required="required" id="password"
+              title="Password should contain only letters, numbers and /!@#$%^&*/ from 8 to 32 characters.">
+            </div>
+            <div class="form-group">
+              <label>Confirm Password</label>
+              <span class="error-message" id="repass_error"></span>
+              <input type="password" class="form-control" required="required" id="repass"
+              title="The password and confirmation password should match.">
+            </div>
+          </div>
+          <!-- <div class="modal-footer">
+            <input type="button" class="btn btn-primary center-block" value="Sign up" onclick='checkSignup()'>
+          </div> -->
+          <div class="modal-footer justify-content-between">
+            <a href="#loginModal" data-toggle="modal" data-dismiss="modal">Already have an account?</a>
+            <input type="button" class="btn btn-primary float-right" value="Login" onclick="checkSignup()">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- signup modal -->
+
+  <!-- post detail modal -->
+  <?php
+    $postCtrl->showRecentPostModal();
+  ?>
+  <!-- post detail modal -->
+  <!-- All modal here -->
+
+  <script type="text/javascript" src="js/login_signup.js"></script>
+  <script type="text/javascript" src="js/all-post.js"></script>
   <script type="text/javascript" src="js/scrollbar.js"></script>
 </body>
 </html>
+
+<?php

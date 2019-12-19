@@ -53,4 +53,26 @@ class Post {
 
     return $data;
   }
+
+  public function getRecentPostModal() {
+    $db = new PDOData();
+    $data = $db->doQuery("
+      select 	p.*,
+              group_concat(m.img_path) as img_list, 
+              group_concat(m.video_path) as video_list,
+              u.username, u.fullname, u.avatarPath,
+              l.city,
+              sum(if(r.react_type = 1, 1, 0)) as like_count,
+              sum(if(r.react_type = 2, 1, 0)) as love_count
+      from post p
+      inner join media m
+      on m.post_id = p.post_id
+      inner join user u
+      on u.user_id = p.user_id
+      inner join location l
+      on l.post_id = p.post_id
+      inner join react r
+      on r.post_id = p.post_id;
+    ");
+  }
 }

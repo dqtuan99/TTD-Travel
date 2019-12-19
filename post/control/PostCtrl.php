@@ -34,4 +34,12 @@ class PostCtrl {
     echo $postview->allDestinationView();
   }
 
+  public function showRecentPostModal() {
+    $post = new \post\model\Post();
+    $data = $post->getRecentPostModal();
+    $postview = new \post\view\PostView($data);
+
+    echo $postview->recentPostModalView();
+  }
+
 }
