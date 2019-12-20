@@ -251,9 +251,11 @@ h2{
   color: #1885b8;
 }
 
-.modal-post .datetime-location {
-  padding-top: 500px;
+.modal-post .datetime-location span {
+  padding-top: 15px;
   font-size: 18px;
+  display: inline-block;
+  white-space: pre;
 }
 
 .modal-post .image-container img{

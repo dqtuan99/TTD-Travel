@@ -100,7 +100,7 @@ class PostView {
     $html = "";
     foreach ($this->data as $row){
       $img_arr = explode(",", $row["img_list"]);
-      $img_count = count($img_arr);
+      echo $row["like_count"];
 
       $html .= '
       <div id="detailPostModal'.$row["post_id"].'" class="modal fade">
@@ -127,40 +127,54 @@ class PostView {
                   <div id="modal-slide'.$row["post_id"].'" class="carousel slide" data-ride="carousel">
                     <!-- Indicators -->
                     <ul class="carousel-indicators">';
-                    $html .= '
-                      <li data-target="#modal-slide" data-slide-to="0" class="active"></li>
-                      <li data-target="#modal-slide" data-slide-to="1"></li>
-                      <li data-target="#modal-slide" data-slide-to="2"></li>';
+                    $i = 0;
+                    foreach ($img_arr as $img){
+                      if ($i == 0){
+                        $html .= '
+                          <li data-target="#modal-slide'.$row["post_id"].'" data-slide-to="'.$i.'" class="active"></li>
+                        ';
+                      }
+                      else {
+                        $html .= '
+                        <li data-target="#modal-slide'.$row["post_id"].'" data-slide-to="'.$i.'"></li>
+                        ';
+                      }
+                      ++$i;
+                    }
                     $html .= '
                     </ul>
 
                     <!-- The slideshow -->
                     <div class="carousel-inner">';
-                    $html .= '
-                      <div class="carousel-item active">
-                        <img src="">
-                      </div>
-                      <div class="carousel-item">
-                        <img src="">
-                      </div>
-                      <div class="carousel-item">
-                        <img src="">
-                      </div>';
+                    $i = 0;
+                    foreach ($img_arr as $img){
+                      if ($i == 0){
+                        $html .= '
+                        <div class="carousel-item active"><img src="'.$img.'"></div>
+                        ';
+                      }
+                      else {
+                        $html .= '
+                        <div class="carousel-item"><img src="'.$img.'"></div>
+                        ';
+                      }
+                      ++$i;
+                    }
                     $html .= '
                     </div>
 
                     <!-- Left and right controls -->
-                    <a class="carousel-control-prev" href="#modal-slide" data-slide="prev">
+                    <a class="carousel-control-prev" href="#modal-slide'.$row["post_id"].'" data-slide="prev">
                       <span class="carousel-control-prev-icon"></span>
                     </a>
-                    <a class="carousel-control-next" href="#modal-slide" data-slide="next">
+                    <a class="carousel-control-next" href="#modal-slide'.$row["post_id"].'" data-slide="next">
                       <span class="carousel-control-next-icon"></span>
                     </a>
                   </div>
                 </div>
                 <div class="datetime-location">
                   <footer class="blockquote-footer">
-                    <span>'.$row["publish_date"].'</span><span class="location hvr-animation-blue">'.$row["city"].'</span>
+                    <span>'.$row["publish_date"].'</span><span class="location hvr-animation-blue">  '.$row["city"].'</span>
                   </footer>
                 </div>
                 <hr class="horizontal-line">

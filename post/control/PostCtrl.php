@@ -38,11 +38,22 @@ class PostCtrl {
     $post = new \post\model\Post();
     $data = $post->getRecentPostModal();
     $count = $post->getPostCount();
-    for ($i = 0; $i < count($data); ++$i){
-      $data[$i]["like_count"] = $count[$i]["like_count"];
-      $data[$i]["love_count"] = $count[$i]["love_count"];
-    }
 
+    $j = 0;
+    for ($i = 0; $i < count($data); ++$i){
+      if ($data[$i]["post_id"] == $data[$j]["post_id"]){
+        $data[$i]["like_count"] = $count[$j]["like_count"];
+        $data[$i]["love_count"] = $count[$j]["love_count"];
+        ++$j;
+        if ($j >= count($count)-1){
+          --$j;
+        }
+      }
+      else {
+        $data[$i]["like_count"] = 0;
+        $data[$i]["love_count"] = 0;
+      }
+    }
     $postview = new \post\view\PostView($data);
 
     echo $postview->recentPostModalView();
