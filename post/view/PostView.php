@@ -1,6 +1,10 @@
 <?php
 
 namespace post\view;
+use core\data\model\PDOData;
+
+require_once("core/data/PDOData.php");
+
 
 class PostView {
   private $data;
@@ -27,14 +31,14 @@ class PostView {
           <h3 class="post-title hvr-animation-blue" href="#detailPostModal'.$row["post_id"].'" data-toggle="modal">'.$row["title"].'</h3>
           <div class="datetime-location" style="font-size: 14px;">
             <footer class="blockquote-footer">
-              <span>'.$row["publish_date"].'</span>
-              <span class="location hvr-animation-blue">'.$row["city"].'</span>
+              <span style="font-size:14px;">'.$row["publish_date"].'</span>
+              <span style="font-size:14px;" class="location hvr-animation-blue">'.$row["city"].'</span>
             </footer>
           </div>
           <div class="datetime-location" style="font-size: 14px;">
             <footer class="blockquote-footer">
-              <span>Published by </span>
-              <span class="username hvr-animation-blue">@qtuan99</span>
+              <span style="font-size:14px;">Published by </span>
+              <span style="font-size:14px;" class="username hvr-animation-blue">@qtuan99</span>
             </footer>
           </div>
           <p>
@@ -105,6 +109,15 @@ class PostView {
   public function recentPostModalView() {
     $html = "";
     foreach ($this->data as $row){
+      $db = new PDOData();
+      $cmt_list = $db->doPreparedQuery("
+        select c.post_id, c.text, c.publish_date, u.username, u.fullname, u.avatarPath
+        from comment c
+        inner join user u
+        on c.user_id = u.user_id
+        where c.post_id = 11;
+      ", array($row["post_id"]));
+
       $img_arr = explode(",", $row["img_list"]);
       echo $row["like_count"];
 
@@ -120,7 +133,7 @@ class PostView {
                   </div>
                   <div class="col-sm" style="margin: 0; padding: 0; margin-left: 5px;">
                     <div class="row fullname"><h5 class="font-weight-bold hvr-animation-black">'.$row["fullname"].'</h5></div>
-                    <div class="row username" style="margin-top: 1px;"><h6>@'.$row["username"].'</h6></div>
+                    <div class="row username" style="margin-top: 1px;"><h6  style="font-size: 105%;">@'.$row["username"].'</h6></div>
                   </div>
                 </div>
                 <div class="text-container">
@@ -215,22 +228,24 @@ class PostView {
                 </div>
               </div>
             </div>
-            <div class="comment-container">
+            <div class="comment-container">';
+            foreach($cmt_list as $cmt){
+              $html .= '
               <div class="comment row">
                 <div class="col-sm-1" style="margin-right: 10px;">
-                  <img class="avatar" src="images/avatar.jpg" alt="">
+                  <img class="avatar" src="'.$cmt["avatarPath"].'" alt="">
                 </div>
                 <div class="col-sm" style="margin: 0; padding: 0;">
                   <div class="row">
-                    <h5 class="font-weight-bold fullname hvr-animation-black">Do Quang Tuan</h5>
-                    <span class="username" style="padding-left: 10px;">@qtuan99</span>
+                    <h5 class="font-weight-bold fullname hvr-animation-black">'.$cmt["fullname"].'</h5>
+                    <span class="username" style="padding-left: 10px;">@'.$cmt["username"].'</span>
                   </div>
                   <div class="row">
                     <footer class="blockquote-footer">
-                      <span>7:00 PM · Oct 19, 2019</span>
+                      <span style="font-size: 115%;">'.$cmt["publish_date"].'</span>
                     </footer>
                   </div>
-                  <div class="row">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magnam expedita suscipit natus rerum, ducimus provident, nesciunt nam sint deleniti ad molestiae consectetur tempora eos quod aut quibusdam labore id!</div>
+                  <div class="row">'.$cmt["text"].'</div>
                   <div class="row" style="margin-left: -23px; margin-top: 3px;">
                     <div class="col-sm">
                       <button type="button" class="like-btn circle-btn text-center comment_like_btn">
@@ -258,7 +273,10 @@ class PostView {
                   </div>
                 </div>
               </div>
-              <hr class="horizontal-line">';
+              <hr class="horizontal-line">
+              ';
+            }
+
               if (isset($_SESSION["username"])){
                 $html .= '
                 <div class="comment row">
@@ -266,15 +284,19 @@ class PostView {
                     <img class="avatar" src="'.$_SESSION["avatarPath"].'" alt="">
                   </div>
                   <div class="col-sm" style="margin: 0; padding: 0;">
-                    <div class="row">
-                      <textarea onfocus="cursorAtEnd(this);" placeholder="Write your comment here..."></textarea>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-10"></div>
-                      <div class="col-sm" style="padding-right: 0;">
-                          <button type="button" class="btn post-button text-center">Comment</button>
+
+                    <form id="login-form" method="post" action="./index.php?post_id='.$row["post_id"].'">
+                      <div class="row">
+                        <textarea name="comment" onfocus="cursorAtEnd(this);" placeholder="Write your comment here..."></textarea>
                       </div>
-                    </div>
+                      <div class="row">
+                        <div class="col-sm-10"></div>
+                        <div class="col-sm" style="padding-right: 0;">
+                            <button type="submit" name="submit_comment" class="btn post-button text-center">Comment</button>
+                        </div>
+                      </div>
+                    </form>
+
                   </div>
                 </div>
                 ';

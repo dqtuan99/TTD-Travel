@@ -11,7 +11,7 @@
       <a class="nav-link" href="./index.php"><span class="span-btn" style="color:#e31254;">Home</span></a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href=""><span class="span-btn">About</span></a>
+      <a class="nav-link" href="./about.php"><span class="span-btn">About</span></a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="./all_post.php?categories=all"><span class="span-btn">Posts</span></a>
@@ -44,9 +44,25 @@
           </div>
         </div>
       </form>
-      <li class="nav-item">
-        <?php $accountCtrl->showLoginBtn("first") ?>
-      </li>
+      <div class="dropdown ">
+        <li class="nav-item">
+          <?php $accountCtrl->showLoginBtn("first") ?>
+        </li>
+        <?php
+          if (isset($_SESSION["fullname"])){
+            echo '
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item grow-lg" href="./profile.php"><i class="fas fa-cog"></i> Manage profile</a>
+            ';
+            if ($_SESSION["isAdmin"] == 1){
+              echo '
+              <a class="dropdown-item grow-lg" href="./createpost.php"><i class="fas fa-plus"></i> Create new post</a>
+              ';
+            }
+            echo '</div>';
+          }
+        ?>
+      </div>
       <li class="nav-item ">
         <?php $accountCtrl->showLoginBtn("second") ?>
       </li>

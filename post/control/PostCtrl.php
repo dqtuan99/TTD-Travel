@@ -59,4 +59,9 @@ class PostCtrl {
     echo $postview->recentPostModalView();
   }
 
+  public function addComment($post_id, $comment, $user_id) {
+    $post = new \post\model\Post();
+    $post->insertComment($post_id, $comment, $user_id);
+  }
+
 }

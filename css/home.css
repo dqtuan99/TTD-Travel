@@ -1,7 +1,7 @@
 
 /* post-content */
 h3 {
-  margin-top:12px;
+  margin-top: 12px;
   font-family: MdGroteskRegular;
   font-size: 130%;
 }
@@ -103,7 +103,7 @@ h3 {
 /* postcontent */
 li.postcontent p{
   font-family: GeosansLight;
-  font-size: 130%;
+  font-size: 120%;
 }
 
 li.postcontent{

@@ -105,9 +105,11 @@ class AccountCtrl {
 			if ($account->checkAccount($_POST["username"], $_POST["password"])){
 				$_SESSION["username"] = $_POST["username"];
         $infor = $account->getAccountInfomation($_SESSION["username"]);
+				$_SESSION["user_id"] = $infor["user_id"];
 				$_SESSION["fullname"] = $infor["fullname"];
 				$_SESSION["email"] = $infor["email"];
 				$_SESSION["avatarPath"] = $infor["avatarPath"];
+				$_SESSION["phone"] = $infor["phone"];
 				$_SESSION["description"] = $infor["description"];
 				$_SESSION["isAdmin"] = $infor["isAdmin"];
 			}
@@ -128,12 +130,13 @@ class AccountCtrl {
 			</script>";
 			$this->login();
 		}
+		header("Location: index.php");
 	}
 
 	public function doLogout() {
-		// session_destroy();
+		session_destroy();
 		// session_start();
-		unset($_SESSION["username"]);
+		// unset($_SESSION["username"]);
 		header("Location: index.php");
 		$this->login();
 	}

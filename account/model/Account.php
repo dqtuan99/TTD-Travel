@@ -75,7 +75,7 @@ class Account {
   public function getAccountInfomation($username) {
     $db = new PDOData();
     $data = $db->doPreparedQuery("
-      select username, fullname, email, avatarPath, description, isAdmin
+      select user_id, username, fullname, email, avatarPath, phone, description, isAdmin
       from user
       where username = ?;
     ", array($username));

@@ -92,4 +92,12 @@ class Post {
     return $data;
   }
 
+  public function insertComment($post_id, $text, $user_id) {
+    $db = new PDOData();
+    $exec = $db->doPrepareSql("
+      insert into comment (post_id, text, user_id)
+      values (?, ?, ?);
+    ", array($post_id, $text, $user_id));
+  }
+
 }

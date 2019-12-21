@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+span {
+  font-weight: lighter;
+  font-family: 'centabel' !important;
+}
+
 /* some cool effect */
 .carousel {
   height: 500px;
@@ -267,4 +272,26 @@ input[type="checkbox"] {
 
 .username {
   color: #1885b8;
+}
+
+.profilebtnv{
+color:#24c982;
+margin-top:-30px;
+}
+.profilebtnx{
+color:#fc0303;
+margin-top:-30px;
+}
+.profilebtnp{
+color:#24c982;
+margin-top:-40px;
+float:right;
+}
+.profilebtnx{
+color:#fc0303;
+margin-top:-30px;
+}
+.profilebtnphoto{
+color:#63625e;
+margin-top:-30px;
 }
