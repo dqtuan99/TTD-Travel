@@ -51,7 +51,7 @@ for(let i = 0; i < post_comment_btns.length; i++) {
 }
 
 for(let i = 0; i < post_comment_containers.length; i++) {
-  let comments_count = post_comment_containers[i].getElementsByClassName('comment row').length - 1;
+  let comments_count = post_comment_containers[i].getElementsByClassName('comment row').length;
   post_comment_counters[i].innerHTML = comments_count.toString() + ' '
 }
 

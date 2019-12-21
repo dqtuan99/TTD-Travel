@@ -115,7 +115,7 @@ class PostView {
         from comment c
         inner join user u
         on c.user_id = u.user_id
-        where c.post_id = 11;
+        where c.post_id = ?;
       ", array($row["post_id"]));
 
       $img_arr = explode(",", $row["img_list"]);
@@ -129,7 +129,7 @@ class PostView {
               <div class="post-container">
                 <div class="user-container row">
                   <div class="col-sm-1">
-                    <img class="avatar" src="images/avatar.jpg" alt="">
+                    <img class="avatar" src="images/tuan.jpg" alt="">
                   </div>
                   <div class="col-sm" style="margin: 0; padding: 0; margin-left: 5px;">
                     <div class="row fullname"><h5 class="font-weight-bold hvr-animation-black">'.$row["fullname"].'</h5></div>
