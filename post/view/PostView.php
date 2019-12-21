@@ -13,7 +13,7 @@ class PostView {
     $html = "";
     foreach ($this->data as $row){
       $string = $row["text"];
-      $string = (strlen($string) > 200) ? substr($string, 0, 190).'...' : $string;
+      $string = (strlen($string) > 300) ? substr($string, 0, 290).'...' : $string;
       $html .= '
       <li class="postcontent">
         <div class="image-container">
@@ -39,22 +39,11 @@ class PostView {
           </div>
           <p>
             '.$string.'
+            <span class="read-more hvr-animation-blue" href="#detailPostModal'.$row["post_id"].'" data-toggle="modal">Continue reading ></span>
           </p>
 
-          <div class="button-group2">
-            <ul class="button-nav2">
-              <li class="nav-element2">
-                <button type="button" class="btn postbtn"><i class="far fa-thumbs-up"></i> Like </button>
-              </li>
-              <li class="nav-element2">
-                <button type="button" class="btn postbtn"><i class="far fa-heart"></i> Love </button>
-              </li>
-              <li class="nav-element2">
-                <button type="button" class="btn postbtn" href="#detailPostModal'.$row["post_id"].'" data-toggle="modal">
-                <i class="far fa-comment"></i> Comment </button>
-              </li>
-            </ul>
-          </div>
+
+
         </div>
       </li>
       <div class="line "><hr></div>
@@ -64,19 +53,36 @@ class PostView {
      return $html;
   }
 
+  // <div class="button-group2">
+  //   <ul class="button-nav2">
+  //     <li class="nav-element2">
+  //       <button type="button" class="btn postbtn"><i class="far fa-thumbs-up"></i> Like </button>
+  //     </li>
+  //     <li class="nav-element2">
+  //       <button type="button" class="btn postbtn"><i class="far fa-heart"></i> Love </button>
+  //     </li>
+  //     <li class="nav-element2">
+  //       <button type="button" class="btn postbtn" href="#detailPostModal'.$row["post_id"].'" data-toggle="modal">
+  //       <i class="far fa-comment"></i> Comment </button>
+  //     </li>
+  //   </ul>
+  // </div>
+
   public function allDestinationView() {
     $html = "";
     foreach ($this->data as $row){
+      $continent = strtolower($row["continent_name"]);
+      $continent = str_replace(' ', '', $continent);
       $html .= '
       <div class="col-sm-4 col-des" style="margin-top:20px;">
         <div class="card">
           <div class="hovereffect2">
-          <a href="asian.html">
+          <a href="./all_post.php?categories='.$continent.'">
             <img class="card-img-top" src="'.$row["thumbnail_img"].'">
           </a>
         </div>
           <div class="card-body">
-            <a class="title-post" href="" ><h5 class="card-title hvr-animation-blue">
+            <a class="title-post" href="./all_post.php?categories='.$continent.'"><h5 class="card-title hvr-animation-blue">
               '.$row["continent_name"].'
             </h5></a>
             <p class="card-text">
@@ -210,7 +216,6 @@ class PostView {
               </div>
             </div>
             <div class="comment-container">
-              TODO
               <div class="comment row">
                 <div class="col-sm-1" style="margin-right: 10px;">
                   <img class="avatar" src="images/avatar.jpg" alt="">
@@ -225,7 +230,7 @@ class PostView {
                       <span>7:00 PM · Oct 19, 2019</span>
                     </footer>
                   </div>
-                  <div class="row">Bạn cho mình thêm thông tin các địa điểm du lịch tại miền Bắc Việt Nam được không?</div>
+                  <div class="row">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem magnam expedita suscipit natus rerum, ducimus provident, nesciunt nam sint deleniti ad molestiae consectetur tempora eos quod aut quibusdam labore id!</div>
                   <div class="row" style="margin-left: -23px; margin-top: 3px;">
                     <div class="col-sm">
                       <button type="button" class="like-btn circle-btn text-center comment_like_btn">
@@ -253,8 +258,28 @@ class PostView {
                   </div>
                 </div>
               </div>
-              <hr class="horizontal-line">
-
+              <hr class="horizontal-line">';
+              if (isset($_SESSION["username"])){
+                $html .= '
+                <div class="comment row">
+                  <div class="col-sm-1" style="margin-right: 10px;">
+                    <img class="avatar" src="'.$_SESSION["avatarPath"].'" alt="">
+                  </div>
+                  <div class="col-sm" style="margin: 0; padding: 0;">
+                    <div class="row">
+                      <textarea onfocus="cursorAtEnd(this);" placeholder="Write your comment here..."></textarea>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-10"></div>
+                      <div class="col-sm" style="padding-right: 0;">
+                          <button type="button" class="btn post-button text-center">Comment</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                ';
+              }
+            $html .= '
             </div>
           </div>
         </div>

@@ -81,8 +81,99 @@ class AllPost {
       on l.post_id = p.post_id
       order by p.publish_date desc;
     ");
+
     $ret = floor(count($rows) / $pageSize);
     if (count($rows) % $pageSize > 0) $ret++;
+
     return $ret;
   }
+
+  public function getPostByContinent($continent, $pageNumber, $pageSize) {
+    $db = new PDOData();
+    $rows = $db->doPreparedQuery("
+      select p.*, l.city, c.continent_name
+      from post p
+      inner join location l
+      on l.post_id = p.post_id
+      inner join continent c
+      on c.continent_id = l.continent_id
+      where c.continent_name = ?
+      order by p.publish_date desc;
+    ", array($continent));
+
+    $beginIndex = $pageNumber * $pageSize;
+    $endIndex = $beginIndex  + $pageSize;
+    if ($beginIndex > count($rows)) $beginIndex = count($rows);
+    if ($endIndex > count($rows)) $endIndex = count($rows);
+
+    $ret = array();
+    for ($i = $beginIndex; $i < $endIndex; $i++)
+    $ret[] = $rows[$i];
+
+    return $ret;
+  }
+
+  public function getContinentPageCount($continent, $pageSize) {
+    $db = new PDOData();
+    $rows = $db->doPreparedQuery("
+      select p.*, l.city, c.continent_name
+      from post p
+      inner join location l
+      on l.post_id = p.post_id
+      inner join continent c
+      on c.continent_id = l.continent_id
+      where c.continent_name = ?
+      order by p.publish_date desc;
+    ", array($continent));
+
+    $ret = floor(count($rows) / $pageSize);
+    if (count($rows) % $pageSize > 0) $ret++;
+
+    return $ret;
+  }
+
+  // public function getPostByDate($year, $month, $pageNumber, $pageSize) {
+  //   $db = new PDOData();
+  //   $rows = $db->doPreparedQuery("
+  //     select p.*, l.city, c.continent_name
+  //     from post p
+  //     inner join location l
+  //     on l.post_id = p.post_id
+  //     inner join continent c
+  //     on c.continent_id = l.continent_id
+  //     where year(p.publish_date) = ? and month(p.publish_date) = ?
+  //     order by p.publish_date desc;
+  //   ", array($year, $month));
+  //
+  //   $beginIndex = $pageNumber * $pageSize;
+  //   $endIndex = $beginIndex  + $pageSize;
+  //   if ($beginIndex > count($rows)) $beginIndex = count($rows);
+  //   if ($endIndex > count($rows)) $endIndex = count($rows);
+  //
+  //   $ret = array();
+  //   for ($i = $beginIndex; $i < $endIndex; $i++)
+  //   $ret[] = $rows[$i];
+  //
+  //   return $ret;
+  // }
+  //
+  // public function getDatePageCount($year, $month, $pageSize) {
+  //   $db = new PDOData();
+  //   $rows = $db->doPreparedQuery("
+  //     select p.*, l.city, c.continent_name
+  //     from post p
+  //     inner join location l
+  //     on l.post_id = p.post_id
+  //     inner join continent c
+  //     on c.continent_id = l.continent_id
+  //     where year(p.publish_date) = ? and month(p.publish_date) = ?
+  //     order by p.publish_date desc;
+  //   ", array($year, $month));
+  //
+  //   $ret = floor(count($rows) / $pageSize);
+  //   if (count($rows) % $pageSize > 0) $ret++;
+  //
+  //   return $ret;
+  // }
+
 }

@@ -77,19 +77,6 @@ function checkSignup() {
   }
 }
 
-function checkLogin() {
-  let no_error_yet = false
-  let username = document.getElementById('username2')
-  let password = document.getElementById('password2')
-
-  let login_error = document.getElementById('login_error')
-  login_error.innerHTML = ''
-
-  if (no_error_yet){
-    document.getElementById('login-form').submit()
-  }
-}
-
 Array.from(form_input).forEach(function(element) {
   element.addEventListener('click', () => {
     username_error.innerHTML = fullname_error.innerHTML = email_error.innerHTML = password_error.innerHTML = repass_error.innerHTML = ''

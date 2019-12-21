@@ -6,6 +6,7 @@ class AllPostListView {
   private $data;
   private $page_num;
   private $current_page;
+  private $categories;
 
   public function __construct($data, $page_num, $current_page, $categories) {
     $this->data = $data;
@@ -14,8 +15,19 @@ class AllPostListView {
     $this->categories = $categories;
   }
 
+  public function constructWithDate($data, $page_num, $current_page, $year, $month){
+    $this->data = $data;
+    $this->page_num = $page_num;
+    $this->current_page = $current_page;
+    $this->year = $year;
+    $this->month = $month;
+  }
+
   public function postByPageView() {
     $html = "";
+    if ($this->data == null) {
+      return "Sorry, no post available yet.";
+    }
     foreach ($this->data as $row){
       $string = $row["text"];
       $string = (strlen($string) > 500) ? substr($string, 0, 490).'...' : $string;

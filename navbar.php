@@ -2,6 +2,7 @@
   require_once("account/control/AccountCtrl.php");
   $accountCtrl = new \account\control\AccountCtrl();
   $accountCtrl->checkAuthentication();
+  $accountCtrl->checkSignUp();
 ?>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
@@ -20,12 +21,12 @@
         <a class="nav-link" href=""><span class="span-btn">Destinations <i class="fas fa-caret-down"></i></span></a>
       </li>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item grow-lg" href="asian.html">Asia</a>
-        <a class="dropdown-item grow-lg" href="africa.html">Africa</a>
-        <a class="dropdown-item grow-lg" href="america.html">America</a>
-        <a class="dropdown-item grow-lg" href="europe.html">Europe</a>
-        <a class="dropdown-item grow-lg" href="north-pole.html">North Pole</a>
-        <a class="dropdown-item grow-lg" href="oceania.html">Oceania</a>
+        <a class="dropdown-item grow-lg" href="./all_post.php?categories=asia">Asia</a>
+        <a class="dropdown-item grow-lg" href="./all_post.php?categories=africa">Africa</a>
+        <a class="dropdown-item grow-lg" href="./all_post.php?categories=america">America</a>
+        <a class="dropdown-item grow-lg" href="./all_post.php?categories=europe">Europe</a>
+        <a class="dropdown-item grow-lg" href="./all_post.php?categories=northpole">North Pole</a>
+        <a class="dropdown-item grow-lg" href="./all_post.php?categories=oceania">Oceania</a>
       </div>
     </div>
   </ul>
@@ -62,33 +63,33 @@
   <div class="modal-dialog modal-login">
     <div class="modal-content">
       <form id="signup-form" method="post" action="">
+        <input type="hidden" name="signupSubmitted" value="1"/>
         <div class="modal-header">
           <h4 class="modal-title">Sign up</h4>
-
         </div>
         <div class="modal-body">
           <div class="form-group">
             <label>Username</label>
             <span class="error-message" id="username_error"></span>
-            <input type="text" class="form-control" required="required" id="username"
+            <input type="text" class="form-control" required="required" id="username" name="username"
             title="Username should contain only letters and numbers from 8 to 32 characters.">
           </div>
           <div class="form-group">
             <label>Full name</label>
             <span class="error-message" id="fullname_error"></span>
-            <input type="text" class="form-control" required="required" id="fullname"
+            <input type="text" class="form-control" required="required" id="fullname" name="fullname"
             title="Please enter a valid name. For example: Elon Musk.">
           </div>
           <div class="form-group">
             <label>Email</label>
             <span class="error-message" id="email_error"></span>
-            <input type="text" class="form-control" required="required" id="email"
+            <input type="text" class="form-control" required="required" id="email" name="email"
             title="Please enter a valid email address. For example: email_address@gmail.com.">
           </div>
           <div class="form-group">
             <label>Password</label>
             <span class="error-message" id="password_error"></span>
-            <input type="password" class="form-control" required="required" id="password"
+            <input type="password" class="form-control" required="required" id="password" name="password"
             title="Password should contain only letters, numbers and /!@#$%^&*/ from 8 to 32 characters.">
           </div>
           <div class="form-group">
@@ -103,7 +104,7 @@
         </div> -->
         <div class="modal-footer justify-content-between">
           <a href="#loginModal" data-toggle="modal" data-dismiss="modal">Already have an account?</a>
-          <input type="button" class="btn btn-primary float-right" value="Login" onclick="checkSignup()">
+          <input type="button" class="btn btn-primary float-right" value="Sign up" onclick="checkSignup()">
         </div>
       </form>
     </div>

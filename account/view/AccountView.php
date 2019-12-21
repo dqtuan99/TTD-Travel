@@ -9,24 +9,24 @@ class AccountView {
 		if ($username != null){
 			if ($btnLocation == "first"){
 				echo '
-				<a class="nav-link" href=""><span class="span-btn">'.$username.'</span></a>
+				<a class="nav-link" href="#"><span class="span-btn"><i class="fas fa-user"></i> '.$username.'</span></a>
 				';
 			}
 			else if ($btnLocation == "second"){
 				echo '
-				<a class="nav-link" href="./index.php?logout"><span class="span-btn">Logout</span></a>
+				<a class="nav-link" href="./index.php?logout"><span class="span-btn"><i class="fas fa-sign-out-alt"></i> Logout</span></a>
 				';
 			}
 		}
 		else {
 			if ($btnLocation == "first"){
 				echo '
-				<a class="nav-link" href="#loginModal" data-toggle="modal"><span class="span-btn">Login</span></a>
+				<a class="nav-link" href="#loginModal" data-toggle="modal"><span class="span-btn"><i class="fas fa-sign-in-alt"></i> Login</span></a>
 				';
 			}
 			else if ($btnLocation == "second"){
 				echo '
-				<a class="nav-link" href="" data-toggle="modal"><span class="span-btn">Sign up</span></a>
+				<a class="nav-link" href="#signupModal" data-toggle="modal"><span class="span-btn"><i class="fas fa-user-plus"></i> Sign up</span></a>
 				';
 			}
 		}
@@ -63,7 +63,7 @@ class AccountView {
 						</div>
 						<div class="modal-footer justify-content-between">
 							<a href="#signupModal" data-toggle="modal" data-dismiss="modal">Not having an account yet?</a>
-							<input type="submit" class="btn btn-primary float-right" value="Login" onclick="checkLogin()">
+							<input type="submit" class="btn btn-primary float-right" value="Login">
 						</div>
 					</form>
 				</div>

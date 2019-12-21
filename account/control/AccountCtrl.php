@@ -10,13 +10,72 @@ class AccountCtrl {
 
 	}
 
+  public function checkSignUp() {
+    $usernameExisted = false;
+    $emailExisted = false;
+		$message = "";
+		if (isset($_POST["signupSubmitted"])){
+			$account = new \account\model\Account();
+			// if ($account->checkExistUsername($_POST["username"])) {
+			// 	$this->doSignUp();
+			// }
+			// else {
+			// 	$message = "Failed to create account: Username already exists";
+			// 	echo "
+			// 	<script type='text/javascript'>
+			// 		alert('$message');
+			// 	</script>";
+			// 	header("refresh:1; url=index.php" ); //1 second
+			// }
+			if (!$account->checkExistUsername($_POST["username"])) $usernameExisted = true;
+			if (!$account->checkExistEmail($_POST["email"])) $emailExisted = true;
+			if (!$usernameExisted && !$emailExisted){
+				$this->doSignUp();
+			}
+			else {
+				$message = "Failed to create account: ";
+				if ($usernameExisted){
+					$message .= "Username";
+					if ($emailExisted){
+						$message .= " and email";
+					}
+				}
+				else {
+					if ($emailExisted){
+						$message .= "Email";
+					}
+				}
+				$message .= " already existed.";
+
+				echo "
+				<script type='text/javascript'>
+					alert('$message');
+				</script>";
+				header("refresh:1; url=index.php" ); //1 second
+			}
+		}
+  }
+
+
+  public function doSignUp() {
+		$account = new \account\model\Account();
+		$username = $_POST["username"];
+		$password = $_POST["password"];
+		$fullname = $_POST["fullname"];
+		$email = $_POST["email"];
+
+		if ($account->createAccount($username, $password, $fullname, $email)){
+			session_start();
+      $this->doLogin();
+			header("Location: index.php");
+		}
+  }
+
 	public function showLoginBtn($btnLocation) {
 		$accountview = new \account\view\AccountView();
 		$username = "";
 		if (isset($_SESSION["username"])){
-			$username = $_SESSION["username"];
-			$account = new \account\model\Account();
-			$username = $account->getAccountFullname($username);
+			$username = $_SESSION["fullname"];
 		}
 		$accountview->loginButtonView($username, $btnLocation);
 	}
@@ -45,14 +104,28 @@ class AccountCtrl {
 			$account = new \account\model\Account();
 			if ($account->checkAccount($_POST["username"], $_POST["password"])){
 				$_SESSION["username"] = $_POST["username"];
+        $infor = $account->getAccountInfomation($_SESSION["username"]);
+				$_SESSION["fullname"] = $infor["fullname"];
+				$_SESSION["email"] = $infor["email"];
+				$_SESSION["avatarPath"] = $infor["avatarPath"];
+				$_SESSION["description"] = $infor["description"];
+				$_SESSION["isAdmin"] = $infor["isAdmin"];
 			}
 			else {
-				echo "Ten dang nhap hoac mat khau khong dung.";
+				$message = "Failed to login: Username or password not found.";
+				echo "
+				<script type='text/javascript'>
+					alert('$message');
+				</script>";
 				$this->login();
 			}
 		}
 		else {
-			echo "Chua nhap ten dang nhap hoac mat khau.";
+			$message = "Failed to login: Username and password can not be blank.";
+			echo "
+			<script type='text/javascript'>
+				alert('$message');
+			</script>";
 			$this->login();
 		}
 	}

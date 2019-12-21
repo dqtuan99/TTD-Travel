@@ -41,10 +41,15 @@ class AllPostView {
   public function archivesView() {
     $html = "";
     foreach ($this->data as $row){
+      $date = explode("/", $row["archived_date"]);
+      $year = (int)$date[0];
+      $month = (int)$date[1];
       $html .= '
       <li class="archive-item grow">
         <div class="row" style="width: 100%; margin-left: auto; margin-right: auto;">
-          <div class="col-md" style="padding: 0; margin-left: 3px;"><p class="text">'.$row["archived_date"].'</p></div>
+          <div class="col-md" style="padding: 0; margin-left: 3px;">
+          <a href="./all_post.php?year='.$year.'&&month='.$month.'" style="color:black; text-decoration:none;"><p class="text">'.$row["archived_date"].'</p></a>          
+          </div>
           <div class="col-"><p class="counter">'.$row["post_count"].'</p></div>
         </div>
       </li>
@@ -57,10 +62,14 @@ class AllPostView {
   public function categoriesView() {
     $html = "";
     foreach($this->data as $row){
+      $continent = strtolower($row["continent_name"]);
+      $continent = str_replace(' ', '', $continent);
       $html .= '
       <li class="category-item grow">
         <div class="row" style="width: 100%; margin-left: auto; margin-right: auto;">
-          <div class="col-md" style="padding: 0; margin-left: 3px;"><p class="text" href="asian.html">'.$row["continent_name"].'</p></div>
+          <div class="col-md" style="padding: 0; margin-left: 3px;">
+          <a href="./all_post.php?categories='.$continent.'" style="text-decoration:none; color:black;"><p class="text">'.$row["continent_name"].'</p></a>
+          </div>
           <div class="col-"><p class="counter">'.$row["post_count"].'</p></div>
         </div>
       </li>

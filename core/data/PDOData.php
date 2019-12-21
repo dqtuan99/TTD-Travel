@@ -91,7 +91,19 @@
 		* $paras: Mảng các tham số cho câu lệnh cập nhật
 		* return: Số bản ghi đã cập nhật
 		*/
-		public function doPrepareSql() {
+		public function doPrepareSql($queryTmpl, $paras) {
+			$count = 0;
+			try {
+				$stmt = $this->db->prepare($queryTmpl);
+				foreach ($paras as $k=>$v) $stmt->bindValue($k+1, $v);
+				$stmt->execute();
+				$count = $stmt->rowCount();
+			} catch(PDOException $e) {
+				echo $e;
+				$count = -1;
+			}
+
+			return $count;
 		}
 
 

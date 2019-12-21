@@ -35,21 +35,33 @@ class AllPostCtrl {
     echo $postview->categoriesView();
   }
 
-  public function showPostByPage(){
+  public function showPostByPage() {
     $p = 1;
     if (isset($_GET["p"]) && is_numeric($_GET["p"])){
       $p = intval($_GET["p"]);
     }
-    if (isset($_GET["categories"]) && $_GET["categories"] == "all"){
-      $all_post = new \all_post\model\AllPost();
-      $data = $all_post->getPostByPage($p-1, 3);
-      $pageNumber = $all_post->getPostPageCount(3);
+    if (isset($_GET["categories"])){
+      if ($_GET["categories"] == "all"){
+        $all_post = new \all_post\model\AllPost();
+        $data = $all_post->getPostByPage($p-1, 3);
+        $pageNumber = $all_post->getPostPageCount(3);
 
-      $postview = new \all_post\view\AllPostListView($data, $pageNumber, $p-1, $_GET["categories"]);
-      echo $postview->postByPageView();
+        $postview = new \all_post\view\AllPostListView($data, $pageNumber, $p-1, $_GET["categories"]);
+        echo $postview->postByPageView();
+      }
+      else {
+        $all_post = new \all_post\model\AllPost();
+        $data = $all_post->getPostByContinent($_GET["categories"], $p-1, 3);
+        $pageNumber = $all_post->getContinentPageCount($_GET["categories"], 3);
+
+        $postview = new \all_post\view\AllPostListView($data, $pageNumber, $p-1, $_GET["categories"]);
+        echo $postview->postByPageView();
+      }
+
     }
     else {
-      echo "testing";
+      echo "404 page not found.";
     }
   }
+
 }
