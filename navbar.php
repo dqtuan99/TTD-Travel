@@ -1,9 +1,3 @@
-<?php
-  require_once("account/control/AccountCtrl.php");
-  $accountCtrl = new \account\control\AccountCtrl();
-  $accountCtrl->checkAuthentication();
-  $accountCtrl->checkSignUp();
-?>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
   <ul class="navbar-nav mr-auto">

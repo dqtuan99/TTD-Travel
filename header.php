@@ -24,3 +24,10 @@ integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zF
 <link rel="stylesheet" href="font/font8/font.css">
 <link rel="stylesheet" href="font/font9/font.css">
 <link rel="stylesheet" href="font/font10/font.css">
+
+<?php
+  require_once("account/control/AccountCtrl.php");
+  $accountCtrl = new \account\control\AccountCtrl();
+  $accountCtrl->checkAuthentication();
+  $accountCtrl->checkSignUp();
+?>

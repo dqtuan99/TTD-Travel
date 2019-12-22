@@ -13,19 +13,21 @@
   $postCtrl = new \post\control\PostCtrl();
 ?>
 
+<?php
+if (isset($_GET["post_id"]) || $_GET["post_id"] != ""){
+  // echo $_GET["post_id"];
+  // echo $_POST["comment"];
+  // echo $_SESSION["user_id"];
+  $postCtrl->addComment($_GET["post_id"], $_POST["comment"], $_SESSION["user_id"]);
+  header("Location: index.php");
+}
+?>
+
 <body>
   <!-- navbar -->
   <?php include("navbar.php"); ?>
   <!-- navbar -->
 
-  <?php
-    if (isset($_GET["post_id"]) || $_GET["post_id"] != ""){
-      // echo $_GET["post_id"];
-      // echo $_POST["comment"];
-      // echo $_SESSION["user_id"];
-      $postCtrl->addComment($_GET["post_id"], $_POST["comment"], $_SESSION["user_id"]);
-    }
-  ?>
 
   <div class="container2">
     <div class="text-center" >
